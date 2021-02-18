@@ -3,7 +3,7 @@ module.exports = {
     devServer: {
       proxy: {
         "^/api": {
-          target: "http://givesng-staging.herokuapp.com",
+          target: "https://givesng-staging.herokuapp.com/api",
           ws:true,
           secure:false
         },
