@@ -17,12 +17,12 @@ export default {
 
     actions:{
         registerUser(context, userData){
-            return axios.post("/api/v1/users/signup/",userData)
+            return axios.post("/api/v1/users/signup",userData)
             
             
         },
         loginUser({commit}, userData){
-            return axios.post('/api/v1/users/login/', userData)
+            return axios.post('/api/v1/users/login', userData)
             .then((res)=>{
                 const user = res.data;
                 const token = res.data['token']
