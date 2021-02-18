@@ -3,9 +3,9 @@ module.exports = {
     devServer: {
       proxy: {
         "^/api": {
-          target: "https://givesng-staging.herokuapp.com",
+          target: "https://givesng-staging.herokuapp.com/",
           ws:true,
-          secure:true
+          secure:false
         },
       },
     },
