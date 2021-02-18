@@ -5,11 +5,30 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start": "npm run start --prefix server",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
+    "animejs": "^3.2.1",
+    "aos": "^2.3.4",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "express": "^4.17.1",
+    "filepond": "^4.25.1",
+    "jquery": "^3.5.1",
+    "material-icons": "^0.5.3",
+    "popper.js": "^1.16.1",
+    "vue": "^2.6.11",
+    "vue-chartjs": "^3.5.1",
+    "vue-filepond": "^7.0.0",
+    "vue-router": "^3.5.1",
+    "vue-sweetalert2": "^4.2.0",
+    "vuesax": "^3.12.2",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

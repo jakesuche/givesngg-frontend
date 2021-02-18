@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+  <g id="icon_add-user" transform="translate(-0.807 -0.806)">
+    <path id="icon_add-user-2" data-name="icon_add-user" d="M16.5,22V19.25h-2.75V16.5H16.5V13.75h2.75V16.5H22v2.75H19.25V22ZM0,22V20.625A6.808,6.808,0,0,1,6.875,13.75H11V16.5H6.875a4.005,4.005,0,0,0-3.85,2.75H11V22ZM4.126,6.875V5.5a5.5,5.5,0,0,1,11,0V6.875a5.5,5.5,0,1,1-11,0ZM6.875,5.5V6.875a2.75,2.75,0,1,0,5.5,0V5.5a2.75,2.75,0,1,0-5.5,0Z" transform="translate(0.807 0.806)" fill="#5c5e8b"/>
+  </g>
+</svg>

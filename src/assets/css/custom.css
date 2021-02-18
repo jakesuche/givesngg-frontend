@@ -1,0 +1,13 @@
+
+
+@media only screen and (max-width: 576px) {
+    .list-group-item{
+        border:none!important;
+       
+    }
+    .list-group-item:last-child{
+        background-color: #5C5E8B;
+        color:white;
+        
+    }
+}

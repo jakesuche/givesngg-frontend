@@ -1,0 +1,31 @@
+ <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="38"
+                    height="38"
+                    viewBox="0 0 38 38"
+                  >
+                    <g
+                      id="Group_33"
+                      data-name="Group 33"
+                      transform="translate(-1312.431 -672.431)"
+                    >
+                      <g id="Avatar" transform="translate(1311.938 671.938)">
+                        <circle
+                          id="Ellipse_40"
+                          data-name="Ellipse 40"
+                          cx="19"
+                          cy="19"
+                          r="19"
+                          transform="translate(0.494 0.494)"
+                          fill="rgba(92,94,139,0.33)"
+                        />
+                        <path
+                          id="Union_12"
+                          data-name="Union 12"
+                          d="M0,19V16.625c0-2.612,4.275-4.75,9.5-4.75s9.5,2.138,9.5,4.75V19ZM4.75,4.75A4.75,4.75,0,1,1,9.5,9.5,4.75,4.75,0,0,1,4.75,4.75Z"
+                          transform="translate(10.494 10.494)"
+                          fill="#5c5e8b"
+                        />
+                      </g>
+                    </g>
+                  </svg>
