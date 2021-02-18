@@ -1,6 +1,6 @@
 
 module.exports = {
-    c: {
+    devServer: {
       proxy: {
         "^/api": {
           target: "https://givesng-staging.herokuapp.com",
@@ -8,7 +8,7 @@ module.exports = {
           // secure:false
           pathRewrite: { "^/api/": "/api/" },
         changeOrigin: true,
-        
+        logLevel: "debug"
         },
       },
     },
