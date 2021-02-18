@@ -128,6 +128,7 @@ export default {
         this.$router.push('/user')
       })
       .catch(()=>{
+        this.showLoginSpin = true
         this.$swal.fire({
           title:'Oops...', 
             text: `An error occured`,
