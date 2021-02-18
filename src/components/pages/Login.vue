@@ -126,12 +126,21 @@ export default {
         });
         console.log(res,'hhjdj');
         this.$router.push('/user')
-      });
+      })
+      .catch(()=>{
+        this.$swal.fire({
+          title:'Oops...', 
+            text: `An error occured`,
+            icon:'warning',
+            confirmButtonText: 'Ok, Thanks',
+        })
+      })
     },
   },
 };
 </script>
 
+            
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap");
 

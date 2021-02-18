@@ -219,7 +219,7 @@ export default {
         }else{
             this.$swal.fire({
             title:'Oops...', 
-            text: `User with this email already exist`,
+            text: `An error occured`,
             icon:'warning',
             confirmButtonText: 'Ok, Thanks',
 
