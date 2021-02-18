@@ -80,6 +80,15 @@
           </li>
         </ul>
         <ul ref="sign" class="navbar-nav ml-auto" >
+           <li class="nav-item">
+            <router-link
+              to="/login"
+              style="border-style:unset"
+              class="btn btn-router"
+            >
+              Login</router-link
+            >
+          </li>
           <li class="nav-item">
             <router-link
               to="/register"
