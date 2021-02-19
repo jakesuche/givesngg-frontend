@@ -1,5 +1,7 @@
 import axios from "axios"
-
+const myAxios = axios.create({
+    baseURL:'https://givesng-staging.herokuapp.com'
+})
 
 
 export default {
@@ -17,12 +19,12 @@ export default {
 
     actions:{
         registerUser(context, userData){
-            return axios.post("https://givesng-staging.herokuapp.com/api/v1/users/signup",userData)
+            return myAxios.post("/api/v1/users/signup",userData)
             
             
         },
         loginUser({commit}, userData){
-            return axios.post('https://givesng-staging.herokuapp.com/api/v1/users/login', userData)
+            return myAxios.post('/api/v1/users/login', userData)
             .then((res)=>{
                 const user = res.data;
                 const token = res.data['token']
