@@ -44,8 +44,8 @@
       <div class="row row-cols-3">
         <div
           class="col my-col-6"
-          data-aos="flip-left"
-          data-aos-anchor-placement="top-center"
+          data-aos="zoom-in"
+         
         >
           <div class="card mb-3">
             <img class="page-image" :src="guyWriting" />
