@@ -1,15 +1,7 @@
 <template>
   <div id="app">
-    
     <nav-bar/>
-      
    <router-view @event="myEvent"/> 
-    
-    <!-- <br>
-    <br>
-    <br>
-    <br> -->
-  
     <footer>
       <h1 style="color:black!important"></h1>
       <Footer/>
@@ -47,13 +39,29 @@ export default {
     // this.checkUserAgent()
     
   }, 
+  beforeCreate(){
+    this.openLoading()
+  },
   created(){
+    this.openLoading()
     this.getAuthUser()
-    
+      
   },
 
 
   methods:{
+
+     openLoading(){
+      this.activeLoading = true
+      this.$vs.loading({
+        type:'radius',
+        background:'white'
+      })
+      setTimeout( ()=> {
+        this.activeLoading = false
+        this.$vs.loading.close()
+      }, 3000);
+    },
     myEvent(res){
       console.log(res)
     },

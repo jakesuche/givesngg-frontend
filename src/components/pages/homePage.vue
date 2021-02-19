@@ -505,6 +505,7 @@ export default {
     jumbotron(this.$refs["jumbotron"]);
     heading(this.$refs["heading"]);
     createBtn(this.$refs["createbtn"]);
+    
 
     // console.log(window.height);
     // this.$refs.jumbotron.css({ height: `${window.height()}px` });
@@ -512,6 +513,10 @@ export default {
     //   this.$refs.jumbotron.css({ height: `${window.height()}px` });
     // });
   },
+  methods:{
+     
+  }
+  
 };
 </script>
 

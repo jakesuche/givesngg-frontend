@@ -261,9 +261,10 @@ export default {
   },
   created() {
     console.log(this.$router.app.$emit("event", "uchechuwk"));
+    
   },
   methods: {
-
+    
    userExist(){
       return this.$store.getters['auth/isAuthenticated']
     },
