@@ -63,22 +63,22 @@ export default {
             
 
         },
-        // logOutUser({commit}){
-        //     let promise = new Promise((resolve)=>{
-        //         resolve({
-        //             maessage:'You have logout out'
-        //         })
-        //     })
-        //     promise.then((res)=>{
-        //         localStorage.clear('auth-token')
-        //         commit('setAuthUser',null)
-        //         console.log(res)
-        //         return true;
-        //     })
-        //     promise.catch((err)=>{
-        //         console.log(err.response)
-        //     })
-        // } 
+        logOutUser({commit}){
+            let promise = new Promise((resolve)=>{
+                resolve({
+                    maessage:'You have logout out'
+                })
+            })
+            promise.then((res)=>{
+                localStorage.clear('auth-token')
+                commit('setAuthUser',null)
+                console.log(res)
+                return true;
+            })
+            promise.catch((err)=>{
+                console.log(err.response)
+            })
+        } 
     },
     mutations:{
         setAuthUser(state,user){

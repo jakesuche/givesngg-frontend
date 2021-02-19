@@ -38,7 +38,7 @@
         </button>
          <button
           v-show="userExist()"
-          @click.prevent="active = !active"
+         
           class="navbar-toggler"
           type="button"
         >
@@ -46,7 +46,7 @@
         </button>
          <button
           v-show="userExist()"
-          @click.prevent="active = !active"
+          
           class="navbar-toggler"
           type="button"
         >
@@ -54,7 +54,7 @@
         </button>
          <button
           v-show="userExist()"
-          @click.prevent="active = !active"
+         
           class="navbar-toggler"
           type="button"
         >
@@ -62,7 +62,7 @@
         </button>
          <button
            v-show="userExist()"
-          @click.prevent="active = !active"
+         
           class="navbar-toggler"
           type="button"
         >
@@ -144,6 +144,7 @@
           <ul ref="sign" class="navbar-nav ml-auto">
             <li class="nav-item">
               <router-link
+             
                 to="/login"
                 style="border-style:unset"
                 class="btn btn-router"
@@ -166,10 +167,11 @@
               </button>
             </li>
           </ul>
+          
         </div>
       </div>
     </nav>
-    <div id="parentx">
+    <div id="parentx" v-show="userExist()">
       <vs-sidebar
         parent="body"
         default-index="1"
@@ -177,15 +179,16 @@
         class="sidebarx"
         spacer
         v-model="active"
+        :position-right="userExist()"
       >
-        <div class="header-sidebar" slot="header" v-if="false">
+        <div class="header-sidebar" slot="header" v-if="userExist()">
           <vs-avatar
             size="70px"
             src="https://randomuser.me/api/portraits/men/85.jpg"
           />
 
           <h4>
-            My Name
+           <!-- {{userName}} -->
             <vs-button
               color="primary"
               icon="more_horiz"
@@ -197,11 +200,18 @@
           <router-link to="/register"
             ><li class="list-group-item">Sign up</li></router-link
           >
+          
           <router-link to="/login"
             ><li class="list-group-item">Login</li></router-link
           >
 
           <li class="list-group-item">Create a project</li>
+        </ul>
+        <ul class="list-group">
+         
+         <li @click="logOut()" class="list-group-item">Logout</li>
+
+          
         </ul>
         <!-- <vs-sidebar-item index="1" icon="question_answer">
         Dashboard
@@ -259,46 +269,29 @@ export default {
     authAnime(this.$refs["sign"]);
     logoAnime(this.$refs["img-logo"]);
   },
-  created() {
-    console.log(this.$router.app.$emit("event", "uchechuwk"));
-    
+  computed:{
+     userName(){
+      const userData = this.authUser().data['doc']
+      return userData || {}
+    }
   },
+  
   methods: {
-    
+   
+    authUser(){
+      return this.$store.getters['auth/authUser']
+    },
    userExist(){
       return this.$store.getters['auth/isAuthenticated']
     },
-    copenSideBar() {
-      this.$swal.fire({
-        title: "Menu",
-        position: "top-start",
-        html: `<ul class="list-group" >
-  <li class="list-group-item" ${(onclick = this.goToSignUp)} >Sign up</li>
-  <li class="list-group-item">Login</li>
-  <li class="list-group-item">Create a project</li>
-  
-</ul>
-        `,
-        showClass: {
-          popup: `
-      animate__animated
-      animate__fadeInLeft
-      animate__faster
-    `,
-        },
-        hideClass: {
-          popup: `
-      animate__animated
-      animate__fadeOutLeft
-      animate__faster
-    `,
-        },
-        grow: "row",
-        width: 300,
-        showConfirmButton: false,
-        showCloseButton: true,
-      });
-    },
+    
+
+    logOut(){
+      this.$store.dispatch('auth/logOutUser')
+      .then(()=>{
+          window.location.pathname = '/'
+      })
+    }
   },
 };
 </script>

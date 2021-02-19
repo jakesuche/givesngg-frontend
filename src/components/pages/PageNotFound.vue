@@ -11,7 +11,7 @@
     </button>
   </span>
       <a
-        href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjJu6L-6r3uAhWy7HMBHeOMBfo4FBAWMAh6BAgHEAI&url=https%3A%2F%2Fwww.enationalelectronics.com%2F&usg=AOvVaw0CoGpfiGKRton9yE4Q8_Hv"
+        href="#"
         target="_blank"
       >
         <div class="container">
