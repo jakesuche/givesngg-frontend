@@ -1001,7 +1001,7 @@ height: 40px;
 }
 .row{
   width: 114%;
-    margin-left: -24px;
+  margin-left: -24px;
 }
 /* .card-text1[data-v-3ed1cbca] {
     font-size: 11px;

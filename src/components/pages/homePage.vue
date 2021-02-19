@@ -681,7 +681,7 @@ p {
 
 .h2-end {
   font-weight: normal;
-  font-family: ;
+  /* font-family: ; */
   font-size: 30px;
   color: #000000;
   padding: 3px 0 0 0;
@@ -781,7 +781,7 @@ main {
   display: inline-block;
   margin-right: 20px;
   margin-left: 50px;
-  float: left;
+  /* float: left; */
   font-weight: normal;
   font-size: 20px;
   position: relative;
@@ -901,7 +901,7 @@ p {
 
 h2 {
   font-weight: normal;
-  font-family: ;
+  /* font-family: ; */
   font-size: 40px;
   color: #000000;
   width: 384px;

@@ -25,7 +25,7 @@
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.1",
     "vue-filepond": "^7.0.0",
-    "vue-router": "^3.5.1",
+    "vue-router": "3.4.9",
     "vue-sweetalert2": "^4.2.0",
     "vuesax": "^3.12.2",
     "vuex": "^3.6.2"

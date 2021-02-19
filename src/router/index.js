@@ -1,3 +1,5 @@
+import store from "@/store"
+
 import Vue from 'vue'
 import Router from 'vue-router'
 import NgoRegistrationPage2 from '../components/pages/NgoRegistrationPage2'
@@ -6,6 +8,7 @@ import userHome from '../components/pages/userHome'
 import pageNotFound from '../components/pages/PageNotFound.vue'
 import Ongoingproject from '../components/pages/OngoingProjects.vue'
 import homePage from '../components/pages/homePage.vue'
+
 
 
 
@@ -23,7 +26,8 @@ let router = new Router({
         {
             path:'/login',
             name:'loginPage',
-            component: () => import('../components/pages/Login')
+            component: () => import('../components/pages/Login'),
+            meta:{onlyGuestUser:true}
         },
        {
         path:'/register',
@@ -48,7 +52,8 @@ let router = new Router({
        {
            path:"/user",
            name:'userHome',
-           component:userHome
+           component:userHome,
+           meta:{onlyAuthUser:true}
        },
        {
         path:'/projects',
@@ -61,12 +66,37 @@ let router = new Router({
            component:pageNotFound
        },
       
-
-       
-        
-
-
     ]
 })
+
+
+router.beforeEach((to, from, next) => {
+    store.dispatch('auth/getAuthUser')
+    .then(()=> {
+      if(to.meta.onlyAuthUser){
+        if(store.getters['auth/isAuthenticated']){
+          next()
+        }else{
+          next({name:'pagenotfound'})
+        }
+      }else if(to.meta.onlyGuestUser){
+        if(store.getters['auth/isAuthenticated']){
+          next('/')
+        }else{
+          next()
+  
+        }
+        
+      }
+      else{
+        next()
+      }
+    
+    })
+  })
+
+  
+
+
 
 export default router

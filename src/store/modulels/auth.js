@@ -3,6 +3,7 @@ const myAxios = axios.create({
     baseURL:'https://givesng-staging.herokuapp.com',
     
 })
+import axiosInstance from '@/services/axios'
 
 
 export default {
@@ -15,6 +16,9 @@ export default {
     getters:{
         authUser(state){
             return state.user || null
+        },
+        isAuthenticated(state){
+            return !!state.user
         }
     },
 
@@ -33,7 +37,48 @@ export default {
                 commit('setAuthUser', user)
                 return user
             })
-        }
+        },
+        getAuthUser(context){
+            const authUser = context.getters["authUser"];
+
+            if(authUser){
+                return Promise.resolve(authUser)
+            }
+            const config = {
+                headers:{
+                    "Cache-control":"no-cache"
+                }
+            };
+            return axiosInstance.get("/api/v1/users/me", config)
+            .then(res=>{
+                const user = res.data;
+                context.commit("setAuthUser",user)
+
+                return context.state.user
+            })
+            .catch((err)=>{
+                context.commit("setAuthUser",null)
+                return err
+            })
+            
+
+        },
+        // logOutUser({commit}){
+        //     let promise = new Promise((resolve)=>{
+        //         resolve({
+        //             maessage:'You have logout out'
+        //         })
+        //     })
+        //     promise.then((res)=>{
+        //         localStorage.clear('auth-token')
+        //         commit('setAuthUser',null)
+        //         console.log(res)
+        //         return true;
+        //     })
+        //     promise.catch((err)=>{
+        //         console.log(err.response)
+        //     })
+        // } 
     },
     mutations:{
         setAuthUser(state,user){

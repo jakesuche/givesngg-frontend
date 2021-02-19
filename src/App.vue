@@ -11,7 +11,7 @@
     <br> -->
   
     <footer>
-      
+      <h1 style="color:black!important"></h1>
       <Footer/>
     </footer>
     <vs-popup
@@ -47,12 +47,30 @@ export default {
     // this.checkUserAgent()
     
   }, 
+  created(){
+    this.getAuthUser()
+    
+  },
 
 
   methods:{
     myEvent(res){
       console.log(res)
+    },
+    
+    getAuthUser(){
+      
+      this.$store.dispatch('auth/getAuthUser')
     }
+    
+    // logout(){
+    //   this.$store.dispatch('auth/logOutUser')
+    //   .then(res=>{
+    //     console.log(res)
+    //   }).catch(err=>{
+    //     console.log(err)
+    //   })
+    // }
     // checkUserAgent(){
     //    const { userAgent } = window.navigator;
         

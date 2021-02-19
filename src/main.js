@@ -24,13 +24,15 @@ Vue.use(vuesax)
 Vue.config.productionTip = false
 
 new Vue({
+  router,
+  store,
+  
   created(){
     AOS.init({
       once:false
     })
   },
-  store,
-  router,
+ 
   render: h => h(App),
 }).$mount('#app')
 
