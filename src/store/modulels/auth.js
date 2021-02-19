@@ -1,6 +1,7 @@
 import axios from "axios"
 const myAxios = axios.create({
-    baseURL:'https://givesng-staging.herokuapp.com'
+    baseURL:'https://givesng-staging.herokuapp.com',
+    
 })
 
 

@@ -1217,7 +1217,7 @@ h2 {
     display: none;
   }
 
-  .progress[data-v-6c095f89] {
+  .progress {
     width: 100vw;
     margin-left: -20px;
     height: 6px;
