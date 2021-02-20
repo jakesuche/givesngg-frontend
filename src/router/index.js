@@ -8,7 +8,7 @@ import userHome from '../components/pages/userHome'
 import pageNotFound from '../components/pages/PageNotFound.vue'
 import Ongoingproject from '../components/pages/OngoingProjects.vue'
 import homePage from '../components/pages/homePage.vue'
-
+import ForgotPassword from '../components/pages/ForgotPassword.vue'
 
 
 
@@ -37,7 +37,8 @@ let router = new Router({
        {
            path:'/ngo/register',
            name:'ngoRegister',
-           component:() =>import('../components/pages/NgoRegistrationPage')
+           component:() =>import('../components/pages/NgoRegistrationPage'),
+           meta:{onlyGuestUser:true}
        },
        {
            path:'/ngo/register2',
@@ -59,6 +60,11 @@ let router = new Router({
         path:'/projects',
         name:'projects',
         component:Ongoingproject
+       },
+       {
+        path:'/reset-password',
+        name:'passwordReset',
+        component:ForgotPassword
        },
        {
            path:"*",

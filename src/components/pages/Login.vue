@@ -47,7 +47,9 @@
           <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" v-if="showLoginSpin"></span>
             <span v-if="showLoginText">Login</span>
           </button>
+           <a href="#" type="button" @click="forGotPass">Forgot password</a>
         </form>
+       
         
         <br />
         <br />
@@ -80,7 +82,7 @@
       </div>
       <div class="card-footer my-c-footer text-muted">
         Don't have an account?
-        <router-link to="/register">Sign up </router-link>
+        <a href="#">Sign up </a>
       </div>
     </div>
   </div>
@@ -137,6 +139,45 @@ export default {
         })
       })
     },
+
+    forGotPass(){
+      this.$swal.fire({
+  title: 'Enter Your Email',
+  input: 'text',
+  inputAttributes: {
+    autocapitalize: 'off'
+  },
+  showCancelButton: true,
+  confirmButtonText: 'Confirm',
+  showLoaderOnConfirm: true,
+  preConfirm: (login) => {
+    
+    return this.$store.dispatch('auth/UserForgotPassword', login)
+
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText)
+        }
+        return response.json()
+      })
+      .catch(error => {
+        console.log(error)
+        this.$swal.showValidationMessage(
+          `Request failed: ${error}`
+        )
+      })
+  },
+  allowOutsideClick: () => !this.$swal.isLoading()
+}).then((result) => {
+  if (result.isConfirmed) {
+    this.$swal.fire({
+      title: `${result.value.login}'s avatar`,
+      imageUrl: result.value.avatar_url
+    })
+  }
+})
+    }
+    
   },
 };
 </script>

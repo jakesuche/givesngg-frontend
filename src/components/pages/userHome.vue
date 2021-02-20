@@ -957,7 +957,7 @@ height: 40px;
 }
 
 
-.text-in-btn[data-v-8ecad676] {
+.text-in-btn {
     top: 2107px;
     left: 700px;
     width: 37px;
@@ -1020,6 +1020,11 @@ height: 40px;
     letter-spacing: 0px;
     opacity: 1;
 } */
+.container-custome{
+    width: 100%;
+    margin-left: 20px;
+  
+}
     
 }
 
