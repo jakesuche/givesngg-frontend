@@ -287,9 +287,13 @@ export default {
     
 
     logOut(){
+      this.active = false
       this.$store.dispatch('auth/logOutUser')
       .then(()=>{
-          window.location.pathname = '/'
+          
+          setTimeout(() => {
+              window.location.pathname = '/'
+          }, 1000);
       })
     }
   },

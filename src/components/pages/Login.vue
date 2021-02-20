@@ -44,13 +44,17 @@
             style="width:100%;background:#5c5e88;color:white"
             class="btn"
           >
-          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" v-if="showLoginSpin"></span>
+            <span
+              class="spinner-grow spinner-grow-sm"
+              role="status"
+              aria-hidden="true"
+              v-if="showLoginSpin"
+            ></span>
             <span v-if="showLoginText">Login</span>
           </button>
-           <a href="#" type="button" @click="forGotPass">Forgot password</a>
+          <a href="#" type="button" @click="OpenForGotPass">Forgot password</a>
         </form>
-       
-        
+
         <br />
         <br />
         <div class="row">
@@ -85,6 +89,75 @@
         <a href="#">Sign up </a>
       </div>
     </div>
+    <div class="centerx">
+      <vs-popup
+        style="color:#5c5e8b"
+        background-color="#5c5e8b"
+        :background-color-popup="colorx"
+        title="Enter Your Email to Reset your Password"
+        :active.sync="popupActivo5"
+      >
+        <vs-row class="vs-row">
+          <vs-row>
+            <div
+              v-if="ShowAlertWaring"
+              class="alert alert-warning alert-dismissible fade show"
+              role="alert"
+            >
+              <strong>Holy guacamole!</strong> You should check in on some of
+              those fields below.
+              <button
+              @click="ShowAlertWaring = !ShowAlertWaring"
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div
+              v-if="ShowAlertSuccess"
+              class="alert alert-success alert-dismissible fade show"
+              role="alert"
+            >
+              <strong>Holy guacamole!</strong> You should check in on some of
+              those fields below.
+              <button
+                @click="ShowAlertSuccess = !ShowAlertSuccess"
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <vs-col
+              class="vs-col"
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="6"
+              vs-xs="12"
+            >
+              <vs-input v-model="email" class="inputx" placeholder="Email" />
+            </vs-col>
+            <vs-col
+              vs-type="flex"
+              vs-justify="center"
+              vs-align="center"
+              vs-w="6"
+              vs-xs="12"
+            >
+              <vs-button @click="ForgoutPass()"  color="#5c5e8b" type="filled"
+                >Send Email Comfirmation</vs-button
+              >
+            </vs-col>
+          </vs-row>
+        </vs-row>
+      </vs-popup>
+    </div>
   </div>
 </template>
 
@@ -97,9 +170,15 @@ export default {
         email: "dajukee@gmail.com",
         password: "pass1234",
       },
-      showLoginSpin:false,
-          showLoginText:true
-      
+      showLoginSpin: false,
+      showLoginText: true,
+      colorx: "white",
+      popupActivo5: false,
+      email: "",
+      ShowAlertWaring: false,
+      ShowAlertSuccess: false,
+      EmailResetError: "",
+      EmailResetSuccess: "",
     };
   },
   mounted() {
@@ -108,81 +187,97 @@ export default {
   created() {},
   methods: {
     loginUser() {
-      this.showLoginSpin = true
-      this.showLoginText = false
-      this.$store.dispatch("auth/loginUser", this.form).then((res) => {
-        this.showLoginSpin = false
-      this.showLoginText = true
-        this.$swal.fire({
-          icon: "success",
-          text: "Welcome chief",
-          target: "#custom-target",
-          confirmButtonText: null,
-          confirmButtonColor: "white",
-          // customClass: {
-          //   container: 'position-absolute'
-          // },
-          toast: true,
-          position: "top-right",
-          timer: 5000,
-        });
-        console.log(res,'hhjdj');
-        this.$router.push('/user')
-      })
-      .catch(()=>{
-        this.showLoginSpin = true
-        this.$swal.fire({
-          title:'Oops...', 
-            text: `An error occured`,
-            icon:'warning',
-            confirmButtonText: 'Ok, Thanks',
+      this.showLoginSpin = true;
+      this.showLoginText = false;
+      this.$store
+        .dispatch("auth/loginUser", this.form)
+        .then((res) => {
+          this.showLoginSpin = false;
+          this.showLoginText = true;
+          this.$swal.fire({
+            icon: "success",
+            text: "Welcome chief",
+            target: "#custom-target",
+            confirmButtonText: null,
+            confirmButtonColor: "white",
+            // customClass: {
+            //   container: 'position-absolute'
+            // },
+            toast: true,
+            position: "top-right",
+            timer: 5000,
+          });
+          console.log(res, "hhjdj");
+          this.$router.push("/user");
         })
-      })
+        .catch(() => {
+          this.showLoginSpin = false;
+          this.showLoginText = true;
+          this.$swal.fire({
+            title: "Oops...",
+            text: `An error occured`,
+            icon: "warning",
+            confirmButtonText: "Ok, Thanks",
+          });
+        });
     },
 
-    forGotPass(){
-      this.$swal.fire({
-  title: 'Enter Your Email',
-  input: 'text',
-  inputAttributes: {
-    autocapitalize: 'off'
-  },
-  showCancelButton: true,
-  confirmButtonText: 'Confirm',
-  showLoaderOnConfirm: true,
-  preConfirm: (login) => {
-    
-    return this.$store.dispatch('auth/UserForgotPassword', login)
+    ForgoutPass() {
+      this.$store
+        .dispatch("auth/UserForgotPassword", this.email)
+        .then((res) => {
+          this.ShowAlertSuccess = true
+          this.ShowAlertWaring = false
+          this.EmailResetSuccess = res.data;
+        })
+        .catch((err) => {
+          this.emailResetError = err.response;
+          this.ShowAlertSuccess = false
+          this.ShowAlertWaring = true
+        });
+    },
+    OpenForGotPass() {
+      this.popupActivo5 = true;
+      // this.$swal
+      //   .fire({
+      //     title: "Enter Your Email",
+      //     input: "text",
+      //     inputAttributes: {
+      //       autocapitalize: "off",
+      //     },
+      //     showCancelButton: true,
+      //     confirmButtonText: "Confirm",
+      //     showLoaderOnConfirm: true,
+      //     preConfirm: (login) => {
+      //       return this.$store
+      //         .dispatch("auth/UserForgotPassword", login)
 
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(response.statusText)
-        }
-        return response.json()
-      })
-      .catch(error => {
-        console.log(error)
-        this.$swal.showValidationMessage(
-          `Request failed: ${error}`
-        )
-      })
-  },
-  allowOutsideClick: () => !this.$swal.isLoading()
-}).then((result) => {
-  if (result.isConfirmed) {
-    this.$swal.fire({
-      title: `${result.value.login}'s avatar`,
-      imageUrl: result.value.avatar_url
-    })
-  }
-})
-    }
-    
+      //         .then((response) => {
+      //           if (!response.ok) {
+      //             throw new Error(response.statusText);
+      //           }
+      //           return response.json();
+      //         })
+      //         .catch((error) => {
+      //           console.log(error);
+      //           this.$swal.showValidationMessage(`Request failed: ${error}`);
+      //         });
+      //     },
+      //     allowOutsideClick: () => !this.$swal.isLoading(),
+      //   })
+      //   .then((result) => {
+      //     if (result.isConfirmed) {
+      //       this.$swal.fire({
+      //         title: `${result.value.login}'s avatar`,
+      //         imageUrl: result.value.avatar_url,
+      //       });
+      //     }
+      //   });
+    },
   },
 };
 </script>
 
-            
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap");
 
@@ -251,6 +346,9 @@ h1 {
 @media screen and (max-width: 480px) {
   .card {
     width: 100% !important;
+  }
+  .vs-col {
+    margin-bottom: 14px;
   }
 }
 </style>
