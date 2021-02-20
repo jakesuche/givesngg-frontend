@@ -1,80 +1,92 @@
 <template>
-  <div id="app">
-    <nav-bar/>
-   <router-view @event="myEvent"/> 
+  <div id="app"  v-if="isAuthResolved">
+    <nav-bar />
+    <router-view @event="myEvent" />
     <footer>
       <h1 style="color:black!important"></h1>
-      <Footer/>
+      <Footer />
     </footer>
     <vs-popup
       style="color:rgb(255,255,255)"
       background-color="rgba(255,255,255,.6)"
-      :background-color-popup="colorx" title="background" :active.sync="popupActivo5">
-      <h5>All the pages cant be view using mobile pls. Ensure you used your desktop</h5>
+      :background-color-popup="colorx"
+      title="background"
+      :active.sync="popupActivo5"
+    >
+      <h5>
+        All the pages cant be view using mobile pls. Ensure you used your
+        desktop
+      </h5>
     </vs-popup>
-    
+   
+
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    
   </div>
+   <div v-else
+      class="con-vs-loading vs-loading-background-white vs-loading-color-undefined"
+      style="background: white;"
+    >
+      <!----><!---->
+      <div class="vs-loading radius">
+        <div class="effect-1 effects"></div>
+        <div class="effect-2 effects"></div>
+        <div class="effect-3 effects"></div>
+        <img src="" /><!---->
+      </div>
+    </div>
+  
 </template>
 
 <script>
-
-
-
-import NavBar from './components/shared/NavBar.vue'
+import NavBar from "./components/shared/NavBar.vue";
 import Footer from "./components/shared/Footer.vue";
 export default {
-  data(){
-    return{
-      colorx:"#4a5153",
-      popupActivo5:false,
-      showSideBar:false
-    }
+  data() {
+    return {
+      colorx: "#4a5153",
+      popupActivo5: false,
+      showSideBar: false,
+    };
   },
-  name: 'App',
-  mounted(){
-   
+  name: "App",
+  mounted() {
     // this.checkUserAgent()
-    
-  }, 
-  beforeCreate(){
-    
   },
-  created(){
-    this.openLoading()
-    this.getAuthUser()
-      
+  beforeCreate() {},
+  created() {
+    // this.openLoading();
+    this.getAuthUser();
   },
-
-
-  methods:{
-
-     openLoading(){
-      this.activeLoading = true
+  computed:{
+    isAuthResolved(){
+      return this.$store.state.auth.isAuthResolved
+    },
+  },
+  methods: {
+    openLoading() {
+      this.activeLoading = true;
       this.$vs.loading({
-        type:'radius',
-        background:'white'
-      })
-      setTimeout( ()=> {
-        this.activeLoading = false
-        this.$vs.loading.close()
+        type: "radius",
+        background: "white",
+      });
+      setTimeout(() => {
+        this.activeLoading = false;
+        this.$vs.loading.close();
       }, 3000);
     },
-    myEvent(res){
-      console.log(res)
+    myEvent(res) {
+      console.log(res);
     },
-    
-    getAuthUser(){
-      
-      this.$store.dispatch('auth/getAuthUser').then((res)=>{
-          console.log(res)
-          const user = JSON.stringify(res.data.doc)
-          localStorage.setItem('user',user)
-      })
-    }
-    
+
+    getAuthUser() {
+      this.$store.dispatch("auth/getAuthUser").then((res) => {
+        console.log(res);
+        const user = JSON.stringify(res.data.doc);
+        localStorage.setItem("user", user);
+      });
+    },
+
     // logout(){
     //   this.$store.dispatch('auth/logOutUser')
     //   .then(res=>{
@@ -85,7 +97,7 @@ export default {
     // }
     // checkUserAgent(){
     //    const { userAgent } = window.navigator;
-        
+
     //     if(userAgent.includes('Mobi')){
     //       this.popupActivo5 = true
     //       return this.$router.push('/login')
@@ -95,21 +107,17 @@ export default {
     // }
   },
   components: {
-   
-   NavBar,
-   Footer
-    
-  }
-}
+    NavBar,
+    Footer,
+  },
+};
 </script>
 
-<style >
-
-
+<style>
 @media only screen and (max-width: 576px) {
-   body{
-  overflow-x: hidden;
-}
+  body {
+    overflow-x: hidden;
+  }
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -119,9 +127,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
   height: 100%;
-  background: #F1F1F1!important;;
-  
-  
+  background: #f1f1f1 !important;
 }
 
 /* width */
@@ -131,22 +137,20 @@ export default {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px #43425D; 
+  box-shadow: inset 0 0 5px #43425d;
   border-radius: 10px;
-  padding-top:400px;
-  padding-bottom:600px
+  padding-top: 400px;
+  padding-bottom: 600px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #43425D; 
+  background: #43425d;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #43425D; 
+  background: #43425d;
 }
-
-
 </style>

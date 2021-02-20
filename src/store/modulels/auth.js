@@ -53,11 +53,12 @@ export default {
             .then(res=>{
                 const user = res.data;
                 context.commit("setAuthUser",user)
-
+                context.commit("isAuthResolved", true)
                 return context.state.user
             })
             .catch((err)=>{
                 context.commit("setAuthUser",null)
+                context.commit('isAuthResolved', true)
                 return err
             })
             
@@ -83,6 +84,9 @@ export default {
     mutations:{
         setAuthUser(state,user){
              return (state.user = user)
+        },
+        isAuthResolved(state,isAuthResolved){
+            return (state.isAuthResolved = isAuthResolved)
         }
 
     }
