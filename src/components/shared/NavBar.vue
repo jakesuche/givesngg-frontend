@@ -77,7 +77,7 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Discover
+                Discover 
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#">Action</a></li>
@@ -167,7 +167,7 @@
               >
             </li>
             <li class="nav-item">
-              <button class="btn btn-secondary create-project">
+              <button class="btn btn-secondary create-project" @click="openModal">
                 Create a project
               </button>
             </li>
@@ -280,6 +280,16 @@
         </div>
       </vs-sidebar>
     </div>
+
+
+<!-- ========================================================================================
+    modal for create project
+    ====================================================================================== -->
+
+      <ProjectCreateModal :testing="testing" />
+      
+<!-- Modal -->
+
   </div>
 </template>
 
@@ -299,6 +309,8 @@ export default {
       showHideNotAuth: true,
       homePage,
       onlyLogo: true,
+      popupActivo5:false,
+      testing:false
     };
   },
   watch: {
@@ -309,6 +321,14 @@ export default {
         this.onlyLogo = true;
       }
     },
+    testing:{
+      handler:function(val){
+        console.log(val)
+        
+      }
+    }
+    
+    
   },
   mounted() {
     authAnime(this.$refs["sign"]);
@@ -322,6 +342,9 @@ export default {
   },
 
   methods: {
+    openModal(){
+      this.testing = !this.testing
+    },
     authUser() {
       return this.$store.getters["auth/authUser"];
     },
@@ -342,6 +365,9 @@ export default {
 </script>
 
 <style scoped>
+@import url('~@/assets/fonts/raleway/fonts.css');
+
+
 .image-left {
   margin-left: -4px !important;
 }

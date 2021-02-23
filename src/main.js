@@ -11,12 +11,13 @@ import "aos/dist/aos.css";
 import 'material-icons/iconfont/material-icons.css';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
-
+import ProjectCreateModal from '@/components/givesCreate/ProjectCreateModal'
 const options = {
   confirmButtonColor: '#5C5E8B',
   
 };
-
+Vue.component('ProjectCreateModal', ProjectCreateModal )
+import '@/assets/fonts/raleway/fonts.css'
 Vue.use(VueSweetalert2, options)
 
 Vue.use(vuesax)

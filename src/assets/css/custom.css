@@ -11,3 +11,24 @@
         
     }
 }
+
+.vs-popup--title {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px 5px 0 0;
+    text-align: center!important;;
+}
+
+.vs-popup--header{
+    background:white;
+    border-radius: 17px!important;
+    
+opacity: 1;
+}
+.vs-popup--title h3 {
+    border-bottom: 1px solid #5C5E8BA0;
+}
+.con-vs-popup .vs-popup {
+    border-radius: 17px!important;
+}

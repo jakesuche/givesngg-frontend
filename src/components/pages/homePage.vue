@@ -1,5 +1,5 @@
-<template>
-  <div class="">
+<template @click="openCreatePoject()">
+  <div class="" >
     <div ref="jumbotron" class="jumbotron jumbotron-fluid">
       <div :class="{overlay:true,overlay2:userExist()}"></div>
       <div class="inner">
@@ -11,7 +11,7 @@
             </div>
           </div>
           <div class="row justify-content-start">
-            <button ref="createbtn" class="btn btn-secondary">
+            <button ref="createbtn" class="btn btn-secondary" @click="openCreatePoject()">
               <h3>Create a project</h3>
             </button>
           </div>
@@ -469,8 +469,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> 
     </div>
+    <ProjectCreateModal :testing="testing" @click="showIt()" />
   </div>
 </template>
 
@@ -488,6 +489,7 @@ import guyWriting from "@/assets/images/guyWriting.jpg";
 // import cheers from '@/assets/images/cheers.png'
 // import cheers from '@/assets/images/cheers.png'
 // import cheers from '@/assets/images/cheers.png'
+
 export default {
   data() {
     return {
@@ -499,12 +501,22 @@ export default {
       cheers,
       kidwater,
       guyWriting,
+      testing:false,
+      
     };
   },
+  
   mounted() {
     jumbotron(this.$refs["jumbotron"]);
     heading(this.$refs["heading"]);
     createBtn(this.$refs["createbtn"]);
+    
+   const  element = document.querySelector('.vs-icon')
+    element.addEventListener('click', function(){
+        
+        this.testing = false
+        
+    })
     
 
     // console.log(window.height);
@@ -513,7 +525,19 @@ export default {
     //   this.$refs.jumbotron.css({ height: `${window.height()}px` });
     // });
   },
+  created(){
+      const  element = document.querySelector('.vs-icon')
+    element.addEventListener('click', function(){
+        
+        this.testing = false
+        
+    })
+  },
   methods:{
+   
+    openCreatePoject(){
+      this.testing=!this.testing
+    },
     userExist(){
       return this.$store.getters['auth/isAuthenticated']
     }
@@ -550,6 +574,7 @@ export default {
   font-size: 2.5rem;
   width: 560px;
   text-align: left;
+  /* font: normal normal normal 60px/12px Somatic Rounded; */
 }
 .justify-content-start > .row {
   margin-top: 5px;

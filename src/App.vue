@@ -52,11 +52,14 @@ export default {
   name: "App",
   mounted() {
     // this.checkUserAgent()
+    
   },
   beforeCreate() {},
   created() {
     // this.openLoading();
     this.getAuthUser();
+    
+    
   },
   computed:{
     isAuthResolved(){
