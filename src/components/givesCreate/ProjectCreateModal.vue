@@ -94,7 +94,7 @@ export default {
         this.testing = false;
         this.active1=false
       } else {
-        this.testing = true;
+        this.testing = false;
       }
     },
   },

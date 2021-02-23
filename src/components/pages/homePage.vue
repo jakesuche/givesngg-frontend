@@ -471,7 +471,7 @@
         </div>
       </div> 
     </div>
-    <ProjectCreateModal :testing="testing" @click="showIt()" />
+    <ProjectCreateModal :testing="testing"  />
   </div>
 </template>
 
@@ -511,12 +511,12 @@ export default {
     heading(this.$refs["heading"]);
     createBtn(this.$refs["createbtn"]);
     
-   const  element = document.querySelector('.vs-icon')
-    element.addEventListener('click', function(){
+  //  const  element = document.querySelector('.vs-icon')
+  //   element.addEventListener('click', function(){
         
-        this.testing = false
+  //       this.testing = false
         
-    })
+  //   })
     
 
     // console.log(window.height);
@@ -526,12 +526,12 @@ export default {
     // });
   },
   created(){
-      const  element = document.querySelector('.vs-icon')
-    element.addEventListener('click', function(){
+    //   const  element = document.querySelector('.vs-icon')
+    // element.addEventListener('click', function(){
         
-        this.testing = false
+    //     this.testing = false
         
-    })
+    // })
   },
   methods:{
    
