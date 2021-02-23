@@ -81,10 +81,13 @@ export default {
 
     getAuthUser() {
       this.$store.dispatch("auth/getAuthUser").then((res) => {
-        console.log(res);
+
         const user = JSON.stringify(res.data.doc);
         localStorage.setItem("user", user);
-      });
+      })
+      .catch((err) =>{
+        console.log(err)
+      })
     },
 
     // logout(){

@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <!-- mobile nav bar start -->
         <button
-          v-show="!userExist()"
+          v-show="!userExist() && onlyLogo"
           @click.prevent="active = !active"
           class="navbar-toggler"
           type="button"
@@ -17,73 +17,58 @@
           /></router-link>
         </button>
         <input
-        v-show="!userExist()"
+          v-show="!userExist() && onlyLogo"
           class="form-control me-2 border-right "
           type="search"
           placeholder="Search"
           aria-label="Search"
         />
 
-    <!-- ====================================================================
+        <!-- ====================================================================
 
         NOT AUTHENTICATED
     ======================================================================= -->
-     <button
-          v-show="userExist()"
-          
-          class="navbar-toggler"
-          type="button"
-        >
+        <button v-show="userExist()" class="navbar-toggler" type="button">
           <span><img src="@/assets/images/home.png" alt="" srcset="" /> </span>
         </button>
-         <button
-          v-show="userExist()"
-         
-          class="navbar-toggler"
-          type="button"
-        >
-          <span><img src="@/assets/images/notification.png" alt="" srcset="" /> </span>
+        <button v-show="userExist()" class="navbar-toggler" type="button">
+          <span
+            ><img src="@/assets/images/notification.png" alt="" srcset="" />
+          </span>
         </button>
-         <button
-          v-show="userExist()"
-          
-          class="navbar-toggler"
-          type="button"
-        >
-          <span><img src="@/assets/images/usermobile.png" alt="" srcset="" /> </span>
+        <button v-show="userExist()" class="navbar-toggler" type="button">
+          <span
+            ><img src="@/assets/images/usermobile.png" alt="" srcset="" />
+          </span>
         </button>
-         <button
-          v-show="userExist()"
-         
-          class="navbar-toggler"
-          type="button"
-        >
-          <span><img src="@/assets/images/envelope.png" alt="" srcset="" /> </span>
+        <button v-show="userExist()" class="navbar-toggler" type="button">
+          <span
+            ><img src="@/assets/images/envelope.png" alt="" srcset="" />
+          </span>
         </button>
-         <button
-           v-show="userExist()"
-         
-          class="navbar-toggler"
-          type="button"
-        >
-          <span><img src="@/assets/images/magnifying-glass.png" alt="" srcset="" /> </span>
+        <button v-show="userExist()" class="navbar-toggler" type="button">
+          <span
+            ><img src="@/assets/images/magnifying-glass.png" alt="" srcset="" />
+          </span>
         </button>
-         <button
+        <button
           v-show="userExist()"
           @click.prevent="active = !active"
           class="navbar-toggler"
           type="button"
         >
-          <span><img src="@/assets/images/usermobileround.png" alt="" srcset="" /> </span>
+          <span
+            ><img src="@/assets/images/usermobileround.png" alt="" srcset="" />
+          </span>
         </button>
-  
 
-
-
-<!-- mobile nav bar end  -->
+        <!-- mobile nav bar end  -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown border-right nav-item-style">
+            <li
+              class="nav-item dropdown border-right nav-item-style"
+              v-if="!userExist() && onlyLogo"
+            >
               <a
                 class="nav-link dropdown-toggle nav-item-style "
                 href="#"
@@ -103,7 +88,10 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-item dropdown border-right nav-item-style">
+            <li
+              class="nav-item dropdown border-right nav-item-style"
+              v-if="!userExist() && onlyLogo"
+            >
               <a
                 class="nav-link nav-item-style dropdown-toggle"
                 href="#"
@@ -123,7 +111,7 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item " v-if="!userExist() && onlyLogo">
               <a class="nav-link  nav-item-style" aria-current="page" href="#"
                 >Gallery</a
               >
@@ -134,17 +122,34 @@
               <router-link to="/">
                 <img
                   ref="img-logo"
-                  class="thumbnail animate-img"
+                  :class="{
+                    thumbnail: true,
+                    'animate-img': true,
+                    'image-left': userExist(),
+                  }"
                   :src="logo"
                   alt=""
                   srcset=""
               /></router-link>
             </li>
+            <li class="nav-item">
+              <input
+                v-show="userExist()"
+                :class="'form-control me-2 m-2 border-right'"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+            </li>
           </ul>
-          <ul ref="sign" class="navbar-nav ml-auto">
+
+          <ul
+            ref="sign"
+            class="navbar-nav ml-auto"
+            v-if="!userExist() && onlyLogo"
+          >
             <li class="nav-item">
               <router-link
-             
                 to="/login"
                 style="border-style:unset"
                 class="btn btn-router"
@@ -167,7 +172,59 @@
               </button>
             </li>
           </ul>
-          
+          <ul ref="sign" class="navbar-nav nav-user ml-auto" v-if="userExist()">
+            <li class="nav-item nav-user-exist">
+              <router-link
+                to="/register"
+                style="border-style:unset"
+                class="btn btn-router"
+              >
+                <img src="@/assets/images2/Group 46.png" alt="" />
+                <p>Home</p>
+              </router-link>
+            </li>
+            <li class="nav-item nav-user-exist">
+              <router-link
+                to="/login"
+                style="border-style:unset"
+                class="btn btn-router"
+              >
+                <img src="@/assets/images2/bell-musical-tool.png" alt="" />
+                <p>Notifications</p>
+              </router-link>
+            </li>
+            <li class="nav-item nav-user-exist">
+              <router-link
+                to="/register"
+                style="border-style:unset"
+                class="btn btn-router"
+              >
+                <img src="@/assets/images2/user-shape.png" alt="" />
+                <p>connections</p>
+              </router-link>
+            </li>
+            <li class="nav-item nav-user-exist">
+              <router-link
+                to="/register"
+                style="border-style:unset"
+                class="btn btn-router"
+              >
+                <img src="@/assets/images2/envelope.png" alt="" />
+                <p>Messages</p></router-link
+              >
+            </li>
+
+            <li class="nav-item nav-user-exist">
+              <router-link
+                to="/register"
+                style="border-style:unset"
+                class="btn btn-router"
+              >
+                <img src="@/assets/images2/Group 49.png" alt="" />
+                <p>Me</p>
+              </router-link>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
@@ -188,7 +245,7 @@
           />
 
           <h4>
-           <!-- {{userName}} -->
+            <!-- {{userName}} -->
             <vs-button
               color="primary"
               icon="more_horiz"
@@ -200,7 +257,7 @@
           <router-link to="/register"
             ><li class="list-group-item">Sign up</li></router-link
           >
-          
+
           <router-link to="/login"
             ><li class="list-group-item">Login</li></router-link
           >
@@ -208,32 +265,8 @@
           <li class="list-group-item">Create a project</li>
         </ul>
         <ul class="list-group">
-         
-         <li @click="logOut()" class="list-group-item">Logout</li>
-
-          
+          <li @click="logOut()" class="list-group-item">Logout</li>
         </ul>
-        <!-- <vs-sidebar-item index="1" icon="question_answer">
-        Dashboard
-      </vs-sidebar-item>
-
-      <vs-sidebar-item index="2" icon="gavel">
-        History
-      </vs-sidebar-item>
-
-      <vs-divider icon="person" position="left">
-        User
-      </vs-divider>
-
-      <vs-sidebar-item index="3" icon="verified_user">
-        Configurations
-      </vs-sidebar-item>
-      <vs-sidebar-item index="4" icon="account_box">
-        Profile
-      </vs-sidebar-item>
-      <vs-sidebar-item index="5" >
-        Card
-      </vs-sidebar-item> -->
 
         <div class="footer-sidebar" slot="footer">
           <vs-button
@@ -252,6 +285,7 @@
 
 <script>
 // import "@/assets/css/custom.css"
+import homePage from "@/assets/images2/Group 286.png";
 import logo from "@/assets/images/logo_dark.png";
 import { logoAnime, authAnime } from "@/animate.js";
 import menuBugger from "@/assets/images/Menu.png";
@@ -261,46 +295,80 @@ export default {
       logo,
       menuBugger,
       active: false,
-      showHideAuth:false,
-      showHideNotAuth:true
+      showHideAuth: false,
+      showHideNotAuth: true,
+      homePage,
+      onlyLogo: true,
     };
+  },
+  watch: {
+    '$route': function(value) {
+      if (value.path === "/login" || value.path === "/register") {
+        this.onlyLogo = false;
+      } else {
+        this.onlyLogo = true;
+      }
+    },
   },
   mounted() {
     authAnime(this.$refs["sign"]);
     logoAnime(this.$refs["img-logo"]);
   },
-  computed:{
-     userName(){
-      const userData = this.authUser().data['doc']
-      return userData || {}
-    }
+  computed: {
+    userName() {
+      const userData = this.authUser().data["doc"];
+      return userData || {};
+    },
   },
-  
-  methods: {
-   
-    authUser(){
-      return this.$store.getters['auth/authUser']
-    },
-   userExist(){
-      return this.$store.getters['auth/isAuthenticated']
-    },
-    
 
-    logOut(){
-      this.active = false
-      this.$store.dispatch('auth/logOutUser')
-      .then(()=>{
-          
-          setTimeout(() => {
-              window.location.pathname = '/'
-          }, 1000);
-      })
-    }
+  methods: {
+    authUser() {
+      return this.$store.getters["auth/authUser"];
+    },
+    userExist() {
+      return this.$store.getters["auth/isAuthenticated"];
+    },
+
+    logOut() {
+      this.active = false;
+      this.$store.dispatch("auth/logOutUser").then(() => {
+        setTimeout(() => {
+          window.location.pathname = "/";
+        }, 1000);
+      });
+    },
   },
 };
 </script>
 
 <style scoped>
+.image-left {
+  margin-left: -4px !important;
+}
+.m-2 {
+  border-radius: 20px !important;
+  background: #f1f1f1 0% 0% no-repeat padding-box;
+  border-radius: 19px;
+  opacity: 1;
+  width: 100% !important;
+}
+.nav-user-exist {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.nav-user-exist img {
+  height: 20px;
+}
+.nav-user-exist p {
+  text-align: center;
+  font: normal normal normal 12px/24px Raleway;
+  letter-spacing: 0px;
+  color: #5c5e8b;
+  opacity: 1;
+}
+.nav-user {
+  margin-bottom: -50px !important;
+}
 @media only screen and (max-width: 576px) {
   .list-group-item {
     border: none !important;
@@ -379,7 +447,7 @@ export default {
   .navbar-light .navbar-toggler {
     border: none !important;
   }
-  .fixed{
+  .fixed {
     height: 100px;
   }
 }

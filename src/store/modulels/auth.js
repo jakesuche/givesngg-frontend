@@ -60,7 +60,7 @@ export default {
     },
     UserForgotPassword(context, email) {
       console.log(email);
-      return myAxios.post("/api/v1/users/forgotPassword", email);
+      return myAxios.patch("/api/v1/users/updatePassword", email);
     },
     logOutUser({ commit }) {
       let promise = new Promise((resolve) => {

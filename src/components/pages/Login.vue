@@ -86,7 +86,7 @@
       </div>
       <div class="card-footer my-c-footer text-muted">
         Don't have an account?
-        <a href="#">Sign up </a>
+        <router-link to="/register">Sign up </router-link>
       </div>
     </div>
     <div class="centerx">
@@ -104,8 +104,7 @@
               class="alert alert-warning alert-dismissible fade show"
               role="alert"
             >
-              <strong>Holy guacamole!</strong> You should check in on some of
-              those fields below.
+              <strong>ERROR !!</strong> {{EmailResetError}}
               <button
               @click="ShowAlertWaring = !ShowAlertWaring"
                 type="button"
@@ -174,7 +173,7 @@ export default {
       showLoginText: true,
       colorx: "white",
       popupActivo5: false,
-      email: "",
+      email: "gitarackurr@yahoo.com",
       ShowAlertWaring: false,
       ShowAlertSuccess: false,
       EmailResetError: "",
@@ -231,9 +230,12 @@ export default {
           this.EmailResetSuccess = res.data;
         })
         .catch((err) => {
+           const message = err['response']['data']['message']
           this.emailResetError = err.response;
           this.ShowAlertSuccess = false
           this.ShowAlertWaring = true
+          this.EmailResetError =message
+          console.log(err.response)
         });
     },
     OpenForGotPass() {

@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <div ref="jumbotron" class="jumbotron jumbotron-fluid">
-      <div class="overlay"></div>
+      <div :class="{overlay:true,overlay2:userExist()}"></div>
       <div class="inner">
         <div class="container">
           <div ref="heading" class="row justify-content-start">
@@ -514,6 +514,10 @@ export default {
     // });
   },
   methods:{
+    userExist(){
+      return this.$store.getters['auth/isAuthenticated']
+    }
+    
      
   }
   
@@ -539,6 +543,8 @@ export default {
   height: 100vh;
   background-color: rgb(92, 94, 139, 0.55);
 }
+
+
 
 .justify-content-start > h1 {
   font-size: 2.5rem;
@@ -1315,5 +1321,8 @@ h2 {
     float: right;
     display: none;
   }
+  .jumbotron > .overlay2{
+  top:113px!important;
+}
 }
 </style>
