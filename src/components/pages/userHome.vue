@@ -19,8 +19,6 @@
         </div>
       </div>
 
-
-
       <!-- col of 8  -->
       <div class="col-md-8 col-sm-12 col-md-8-custom">
         <div class="row first-row-item">
@@ -49,7 +47,7 @@
                 <span style="margin-left:14px">Photo</span>
               </div>
               <div class="col-md-4 icon-bottom">
-                <img :src="playButton" alt=""> Video
+                <img :src="playButton" alt="" /> Video
               </div>
               <div class="col-md-4 icon-bottom">
                 <i class="fas fa-file"></i> File
@@ -58,21 +56,24 @@
           </div>
         </div>
         <!-- mobile row first -->
-         <div class="row mb-3 first-row-item-mobile justify-content-around" style="margin-top:-40px">
+        <div
+          class="row mb-3 first-row-item-mobile justify-content-around"
+          style="margin-top:-40px"
+        >
           <div class="col-xs-6">
-            <button class="btn btn-secondary">
-              <img src="@/assets/svg/upload.svg" alt="" srcset="">
+            <button class="btn btn-secondary" @click="testing =!testing">
+              <img src="@/assets/svg/upload.svg" alt="" srcset="" />
               Create new project
             </button>
           </div>
           <div class="col-xs-6">
-              <button class="btn btn-secondary btn-2" style="width:120px">
+            <button class="btn btn-secondary btn-2" style="width:120px">
               $50
             </button>
           </div>
         </div>
         <!-- mobile row end -->
-        <div class="row">
+        <div class="row" v-for="project in projects" :key="project._id">
           <div class="card mb-3">
             <div class="card-header">
               <small>
@@ -118,292 +119,103 @@
                 </svg>
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 <p style="margin-top:10px;margin-left:7px">
-                  James Doe <br />
-                  <span class="time-ago"> 2 days ago </span>
+                  {{ project.projectCreatedBy["name"] }} <br />
+                  <span class="time-ago"> {{ project.projectCreatedAt | fromNow}} {{check}} </span>
                 </p>
               </section>
               <small class="small-text">
                 <h6 style="color:#5C5E8B">
-                  Help John get fly for his scholarship
+                  {{ project["project"] }}
                 </h6>
                 <p class="long-text">
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim Culpa qui officia des
-                voluptatem. Culpa qui officia deserunt mollit anim id est
-                laborum. Sed ut perspiciatis unde omnis iste natus error sit vol
-                ... See more
+                  {{ project["description"] }}
                 </p>
-                <br>
+                <br />
                 See more
               </small>
             </section>
             <img :src="guyWriting" class="card-img-top" alt="a guy writing" />
             <div class="card-body">
               <div style="display:flex;">
-                <h5 class="card-title">Donated-$22,083</h5>
-                <p class="card-title p ">Donated-$22,083</p>
+                <!-- amount donated -->
+                <h5 class="card-title">
+                  Donated-${{ project["amounrDonated"] }}
+                </h5>
+                <!-- <p class="card-title p ">Donated-$22,083</p> -->
               </div>
               <div class="progress">
                 <div
                   class="progress-bar"
                   role="progressbar"
-                  style="width: 25%"
+                  :style="{ width: `${23}%` }"
                   aria-valuenow="25"
                   aria-valuemin="0"
                   aria-valuemax="100"
                 ></div>
               </div>
               <p class="card-text">
-                <small class="text-muted">902 donations</small>
-              </p>
-            </div>
-            <div class="card-footer">
-              <div class="btn-group1 row justify-content-around" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-primary btn-footer">
-                  <span class="text-in-btn"> <img src="@/assets/images/donate.png" alt=""> Donate</span>
-                </button>
-                <button type="button" class="btn btn-primary btn-footer">
-                  <span class="text-in-btn"> <img src="@/assets/images/share.png" alt=""> Share</span>
-                </button>
-                <button type="button" class="btn btn-primary btn-footer">
-                  <span class="text-in-btn">  <img src="@/assets/images/retweet-arrows-symbol.png" alt=""> Repost</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="card mb-3">
-            <div class="card-header">
-              <small>
-                John Doe and two other connection donated
-              </small>
-            </div>
-            <section>
-              <section
-                class="container-custome"
-                style="float:left;display:flex"
-              >
-                <!-- <i class="fas 7x fa-user-circle" style="font-size:60px" ></i> -->
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="58"
-                  height="65"
-                  viewBox="0 0 38 38"
+                <small class="text-muted"
+                  >{{ project["signedUpDonators"].length }} donations</small
                 >
-                  <g
-                    id="Group_33"
-                    data-name="Group 33"
-                    transform="translate(-1312.431 -672.431)"
-                  >
-                    <g id="Avatar" transform="translate(1311.938 671.938)">
-                      <circle
-                        id="Ellipse_40"
-                        data-name="Ellipse 40"
-                        cx="19"
-                        cy="19"
-                        r="19"
-                        transform="translate(0.494 0.494)"
-                        fill="rgba(92,94,139,0.33)"
-                      />
-                      <path
-                        id="Union_12"
-                        data-name="Union 12"
-                        d="M0,19V16.625c0-2.612,4.275-4.75,9.5-4.75s9.5,2.138,9.5,4.75V19ZM4.75,4.75A4.75,4.75,0,1,1,9.5,9.5,4.75,4.75,0,0,1,4.75,4.75Z"
-                        transform="translate(10.494 10.494)"
-                        fill="#5c5e8b"
-                      />
-                    </g>
-                  </g>
-                </svg>
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <p style="margin-top:10px;margin-left:7px">
-                  James Doe <br />
-                  <span class="time-ago"> 2 days ago </span>
-                </p>
-              </section>
-              <small class="small-text">
-                <h6>Help John get fly for his scholarship</h6>
-                <p class="long-text">
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim Culpa qui officia des
-                voluptatem. Culpa qui officia deserunt mollit anim id est
-                laborum. Sed ut perspiciatis unde omnis iste natus error sit vol
-                ... See more
-                </p>
-                <br>
-                See more
-              </small>
-            </section>
-            <img :src="child1" class="card-img-top" alt="child1" />
-            <div class="card-body">
-              <div style="display:flex;">
-                <h5 class="card-title">Donated-$22,083</h5>
-                <p class="card-title p ">Donated-$22,083</p>
-              </div>
-              <div class="progress">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  style="width: 25%"
-                  aria-valuenow="25"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-              <p class="card-text">
-                <small class="text-muted">902 donations</small>
               </p>
             </div>
             <div class="card-footer">
-              <div class="btn-group1" role="group" aria-label="Basic example">
-               <button type="button" class="btn btn-primary btn-footer">
-                  <span class="text-in-btn"> <img src="@/assets/images/donate.png" alt=""> Donate</span>
-                </button>
-                <button type="button" class="btn btn-primary btn-footer">
-                  <span class="text-in-btn"> <img src="@/assets/images/share.png" alt=""> Share</span>
-                </button>
-                <button type="button" class="btn btn-primary btn-footer">
-                  <span class="text-in-btn">  <img src="@/assets/images/retweet-arrows-symbol.png" alt=""> Repost</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="card mb-3">
-            <div class="card-header">
-              <small>
-                John Doe and two other connection donated
-              </small>
-            </div>
-            <section>
-              <section
-                class="container-custome"
-                style="float:left;display:flex"
+              <div
+                class="btn-group1 row justify-content-around"
+                role="group"
+                aria-label="Basic example"
               >
-                <!-- <i class="fas 7x fa-user-circle" style="font-size:60px" ></i> -->
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="58"
-                  height="65"
-                  viewBox="0 0 38 38"
-                >
-                  <g
-                    id="Group_33"
-                    data-name="Group 33"
-                    transform="translate(-1312.431 -672.431)"
+                <button type="button" class="btn btn-primary btn-footer">
+                  <span class="text-in-btn">
+                    <img src="@/assets/images/donate.png" alt="" /> Donate</span
                   >
-                    <g id="Avatar" transform="translate(1311.938 671.938)">
-                      <circle
-                        id="Ellipse_40"
-                        data-name="Ellipse 40"
-                        cx="19"
-                        cy="19"
-                        r="19"
-                        transform="translate(0.494 0.494)"
-                        fill="rgba(92,94,139,0.33)"
-                      />
-                      <path
-                        id="Union_12"
-                        data-name="Union 12"
-                        d="M0,19V16.625c0-2.612,4.275-4.75,9.5-4.75s9.5,2.138,9.5,4.75V19ZM4.75,4.75A4.75,4.75,0,1,1,9.5,9.5,4.75,4.75,0,0,1,4.75,4.75Z"
-                        transform="translate(10.494 10.494)"
-                        fill="#5c5e8b"
-                      />
-                    </g>
-                  </g>
-                </svg>
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <p style="margin-top:10px;margin-left:7px">
-                  James Doe <br />
-                  <span class="time-ago"> 2 days ago </span>
-                </p>
-              </section>
-              <small class="small-text">
-                <h6>Help John get fly for his scholarship</h6>
-                <p class="long-text">
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim Culpa qui officia des
-                voluptatem. Culpa qui officia deserunt mollit anim id est
-                laborum. Sed ut perspiciatis unde omnis iste natus error sit vol
-                ... 
-                </p>
-                <br>
-                See more
-              </small>
-            </section>
-            <img :src="childDrinking" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <div style="display:flex;">
-                <h5 class="card-title">Donated-$22,083</h5>
-                <p class="card-title p ">Donated-$22,083</p>
-              </div>
-              <div class="progress">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  style="width: 25%"
-                  aria-valuenow="25"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-              <p class="card-text">
-                <small class="text-muted">902 donations</small>
-              </p>
-            </div>
-            <div class="card-footer">
-              <div class="btn-group1" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-primary btn-footer">
-                  <span class="text-in-btn"> <img src="@/assets/images/donate.png" alt=""> Donate</span>
                 </button>
                 <button type="button" class="btn btn-primary btn-footer">
-                  <span class="text-in-btn"> <img src="@/assets/images/share.png" alt=""> Share</span>
+                  <span class="text-in-btn">
+                    <img src="@/assets/images/share.png" alt="" /> Share</span
+                  >
                 </button>
                 <button type="button" class="btn btn-primary btn-footer">
-                  <span class="text-in-btn">  <img src="@/assets/images/retweet-arrows-symbol.png" alt=""> Repost</span>
+                  <span class="text-in-btn">
+                    <img
+                      src="@/assets/images/retweet-arrows-symbol.png"
+                      alt=""
+                    />
+                    Repost</span
+                  >
                 </button>
               </div>
             </div>
           </div>
         </div>
+       <div class="row mb-3" v-if="!$store.getters['project/ProjectsExist']">
+         No project
+       </div>
+
         <div class="row mb-3">
           <!-- clear space for downn -->
         </div>
-        <br>
-        <br>
-
+        <br />
+        <br />
       </div>
 
-
-
-
-
-<!-- col of 2 -->
-<!-- this will show display none on mobile -->
+      <!-- col of 2 -->
+      <!-- this will show display none on mobile -->
       <div class="col-md-2 col-md-2-custom">
         <div class="row mb-3" style="border-radius:30px">
           <ul class="list-group list-group2" style="border-radius:20px">
             <li class="list-group-item list-group-item1 ">Ongoing projects</li>
-            <li class="list-group-item list-group-item1">
-              Help rural schools get book
-            </li>
-            <li class="list-group-item list-group-item1">
-              Food for the orphanage
-            </li>
-            <li class="list-group-item list-group-item1">
-              Help Martins battle cancer
-            </li>
-            <li class="list-group-item list-group-item1">
-              Help Florence keep her home
-            </li>
-            <li class="list-group-item list-group-item1">
-              Help rural schools get books
+            <li
+              class="list-group-item list-group-item1"
+              v-for="project in projects"
+              :key="project._id"
+            >
+              {{ project["project"] }}
             </li>
             <li class="list-group-item  list-group-item1">
-              Discover more <span><i class="fas fa-angle-down"></i></span>
+             more <span><i class="fas fa-angle-down"></i></span>
             </li>
+
           </ul>
         </div>
         <div class="row mb-3" style="border-radius:30px">
@@ -455,9 +267,13 @@
                 </g>
               </svg>
               Ebose Alilenotor
-              
-             <img class="svg-img" src="@/assets/images/icon_add-user.svg" alt="" srcset="">
 
+              <img
+                class="svg-img"
+                src="@/assets/images/icon_add-user.svg"
+                alt=""
+                srcset=""
+              />
             </li>
             <li class="list-group-item list-group-item1 list-group-item3">
               <svg
@@ -492,7 +308,12 @@
                 </g>
               </svg>
               Emmnuella Chidimma
-              <img class="svg-img" src="@/assets/images/icon_add-user.svg" alt="" srcset="">
+              <img
+                class="svg-img"
+                src="@/assets/images/icon_add-user.svg"
+                alt=""
+                srcset=""
+              />
             </li>
             <li class="list-group-item list-group-item1 list-group-item3">
               <svg
@@ -527,7 +348,12 @@
                 </g>
               </svg>
               Akindele Ogutuga
-               <img class="svg-img" src="@/assets/images/icon_add-user.svg" alt="" srcset="">
+              <img
+                class="svg-img"
+                src="@/assets/images/icon_add-user.svg"
+                alt=""
+                srcset=""
+              />
             </li>
             <li class="list-group-item list-group-item1 list-group-item3">
               <svg
@@ -562,7 +388,12 @@
                 </g>
               </svg>
               Onyishi ifeanyi
-               <img class="svg-img" src="@/assets/images/icon_add-user.svg" alt="" srcset="">
+              <img
+                class="svg-img"
+                src="@/assets/images/icon_add-user.svg"
+                alt=""
+                srcset=""
+              />
             </li>
             <li class="list-group-item list-group-item1 list-group-item3">
               <svg
@@ -594,10 +425,14 @@
                       fill="#5c5e8b"
                     />
                   </g>
-                </g>
-              </svg>Vivian Chinenye
-              <img class="svg-img" src="@/assets/images/icon_add-user.svg" alt="" srcset="">
-              
+                </g></svg
+              >Vivian Chinenye
+              <img
+                class="svg-img"
+                src="@/assets/images/icon_add-user.svg"
+                alt=""
+                srcset=""
+              />
             </li>
             <li class="list-group-item  list-group-item1">
               Discover more <span><i class="fas fa-angle-down"></i></span>
@@ -613,6 +448,7 @@
         </div> -->
       </div>
     </div>
+    <ProjectCreateModal :testing="testing" />
   </div>
 </template>
 
@@ -621,11 +457,10 @@ import guyWriting from "@/assets/images/guyWriting.jpg";
 import childDrinking from "@/assets/images/childDrinking.jpg";
 import child1 from "@/assets/images/child1.jpg";
 import userIcon from "@/assets/images/userIcon.png";
-import icon_add_user from "@/assets/images/icon_add-user.svg"
+import icon_add_user from "@/assets/images/icon_add-user.svg";
 import playButton from "@/assets/svg/playbutton.svg";
-
+import { mapState } from "vuex";
 export default {
-
   data() {
     return {
       guyWriting,
@@ -633,18 +468,35 @@ export default {
       childDrinking,
       userIcon,
       icon_add_user,
-      playButton
+      playButton,
+      testing:false,
+      
     };
   },
-  created(){
-    this.emit()
+  created() {
+    this.emit();
+    console.log(this.getMe())
+    
   },
-  methods:{
-    emit(){
-      this.$emit('ref', this.$refs.container)
+  computed: {
+    ...mapState({
+      projects: (state) => state.project.projects,
+    }),
+   
+  },
+  methods: {
+    emit() {
+      this.$emit("ref", this.$refs.container);
+    },
+     getMe(){
+      const array = ["one", "two", "three"]
+let arr = array.forEach(function (item) {
+ this.check = item
+})
+console.log(arr)
     }
+   
   },
- 
 };
 </script>
 
@@ -693,6 +545,9 @@ h6 {
   color: #707070;
   opacity: 1;
   margin-right: 8px;
+}
+.container-custome p {
+  text-align:left;
 }
 .mb-3,
 .my-3 {
@@ -825,19 +680,19 @@ input::placeholder {
   opacity: 1;
   line-height: 70%;
 }
-.list-group-item1{
+.list-group-item1 {
   line-height: 50%;
 }
-.list-group-item3{
-      padding-top: 0px;
-    padding-bottom: 22px;
-    font: normal normal bold 20px/10px Raleway;
-letter-spacing: 0px;
-color: #707070;
-opacity: 1;
-/* width: 152px; */
-height: 40px;
-font-size:12px
+.list-group-item3 {
+  padding-top: 0px;
+  padding-bottom: 22px;
+  font: normal normal bold 20px/10px Raleway;
+  letter-spacing: 0px;
+  color: #707070;
+  opacity: 1;
+  /* width: 152px; */
+  height: 40px;
+  font-size: 12px;
 }
 .list-group-item:first-child {
   /* width: 122px;
@@ -863,7 +718,6 @@ height: 24px; */
   border-top: 1px solid #7745458c;
 }
 .list-group {
-  box-shadow: -18px 10px 52px -1px rgba(212, 182, 212, 0.43);
 }
 
 .list-group-item:last-child .fas {
@@ -891,73 +745,68 @@ height: 24px; */
   width: 38px;
   display: inline-flex;
 }
-.svg-img{
-  float:right;
+.svg-img {
+  float: right;
   top: 1121px;
-left: 1724px;
-width: 15px;
-height: 15px;
+  left: 1724px;
+  width: 15px;
+  height: 15px;
 
-opacity: 1;
-margin-top: 12px;
-  
+  opacity: 1;
+  margin-top: 12px;
 }
-
 
 /* mobile responsive ness */
 
-@media  screen  and (max-width:480px){
-  .card{
-    width:100%!important
+@media screen and (max-width: 480px) {
+  .card {
+    width: 100% !important;
   }
 }
 
 @media only screen and (max-width: 576px) {
-   .col-md-2{
-     display:none
-   }
-   .first-row-item{
-     display:none!important
-   }
-   .first-row-item-mobile .btn{
-      
-      background: #FFFFFF 0% 0% no-repeat padding-box!important;
-box-shadow: 0px 3px 6px #0000000A;
-border-radius: 5px;
-border:none;
-opacity: 1;
+  .col-md-2 {
+    display: none;
+  }
+  .first-row-item {
+    display: none !important;
+  }
+  .first-row-item-mobile .btn {
+    background: #ffffff 0% 0% no-repeat padding-box !important;
+    box-shadow: 0px 3px 6px #0000000a;
+    border-radius: 5px;
+    border: none;
+    opacity: 1;
 
-font: normal normal bold 14px/30px Raleway;
-letter-spacing: 0px;
-color: #5C5E8B;
-opacity: 1;
-    }
-    .first-row-item-mobile .btn-2{
-      
-font: normal normal bold 16px/19px Raleway;
-letter-spacing: 0px;
-color: #0AAE0F;
-opacity: 1;
-height: 40px;
-    }
-    .btn-footer {
+    font: normal normal bold 14px/30px Raleway;
+    letter-spacing: 0px;
+    color: #5c5e8b;
+    opacity: 1;
+  }
+  .first-row-item-mobile .btn-2 {
+    font: normal normal bold 16px/19px Raleway;
+    letter-spacing: 0px;
+    color: #0aae0f;
+    opacity: 1;
+    height: 40px;
+  }
+  .btn-footer {
     margin: 0px 7px 0px 1px;
     padding: 0px 30px 0px 30px;
     background: none;
     width: 90px;
     height: 27px;
-    border:none ;
+    border: none;
     border-radius: 14px;
     opacity: 0.7;
     font-size: 9px;
     padding: 0 12px 0 12px;
-}
-.btn-footer img {
-  height:15px
-}
+  }
+  .btn-footer img {
+    height: 15px;
+  }
 
-
-.text-in-btn {
+  .text-in-btn {
     top: 2107px;
     left: 700px;
     width: 37px;
@@ -969,27 +818,24 @@ height: 40px;
     opacity: 1;
     font-size: small;
     padding: 0 -119px 0 -128px;
-    
-}
-.progress {
-   
+  }
+  .progress {
     height: 0.4rem;
-    
+
     /* width: 12px; */
-}
-.card-body .p {
-    
+  }
+  .card-body .p {
     display: none;
-}
-.long-text{
-  font-size: 11px;
+  }
+  .long-text {
+    font-size: 11px;
     width: 300px;
     height: 18px;
     padding-bottom: 10px;
     overflow: hidden;
     position: relative;
     display: inline-block;
-    
+
     text-align: left;
     text-decoration: none;
     text-overflow: ellipsis;
@@ -998,12 +844,12 @@ height: 40px;
     letter-spacing: 0px;
     opacity: 1;
     margin: 0 5px -9px 5px;
-}
-.row{
-  width: 114%;
-  margin-left: -24px;
-}
-/* .card-text1[data-v-3ed1cbca] {
+  }
+  .row {
+    width: 114%;
+    margin-left: -24px;
+  }
+  /* .card-text1[data-v-3ed1cbca] {
     font-size: 11px;
     width: 340px;
     height: 18px;
@@ -1020,20 +866,15 @@ height: 40px;
     letter-spacing: 0px;
     opacity: 1;
 } */
-.container-custome{
+  .container-custome {
     width: 100%;
     margin-left: 20px;
-  
+  }
 }
-    
-}
-
 
 @media only screen and (min-width: 576px) {
-    .first-row-item-mobile{
-      display:none;
-      
-    }
+  .first-row-item-mobile {
+    display: none;
+  }
 }
 </style>
-

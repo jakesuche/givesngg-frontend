@@ -21,6 +21,7 @@
     "filepond": "^4.25.1",
     "jquery": "^3.5.1",
     "material-icons": "^0.5.3",
+    "moment": "^2.29.1",
     "popper.js": "^1.16.1",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.1",

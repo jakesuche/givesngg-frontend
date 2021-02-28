@@ -146,8 +146,15 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap");
-
+/* @import url("https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap"); */
+@font-face {
+  font-family: 'Somatic-Rounded';
+  src: url('~@/assets/fonts/raleway/Somatic-Rounded.ttf') format('truetype'),
+       url('~@/assets/fonts/raleway/Somatic-Rounded.otf') format('otf');
+      
+  font-weight: normal;
+  font-style: normal;
+}
 .facebook-btn {
   background-color: #1f15a7;
   border-style: none;
@@ -174,10 +181,10 @@ input {
 }
 h1 {
   text-align: center;
-  font: normal normal normal 60px/24px Somatic Rounded;
+  font: normal normal normal 60px/24px 'Somatic Rounded';
 
   opacity: 1;
-  font-family: "Londrina Solid", cursive;
+  font-family: "Somatic-Rounded";
   padding: 10px;
 }
 .card-header {

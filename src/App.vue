@@ -58,6 +58,7 @@ export default {
   created() {
     // this.openLoading();
     this.getAuthUser();
+    this.getProjects()
     
     
   },
@@ -67,6 +68,12 @@ export default {
     },
   },
   methods: {
+    getProjects(){
+      this.$store.dispatch('project/getProjects')
+      .then(res=>{
+        console.log(res)
+      })
+    },
     openLoading() {
       this.activeLoading = true;
       this.$vs.loading({

@@ -16,9 +16,15 @@ const options = {
   confirmButtonColor: '#5C5E8B',
   
 };
+import moment from 'moment'
 Vue.component('ProjectCreateModal', ProjectCreateModal )
-import '@/assets/fonts/raleway/fonts.css'
+ import '@/assets/fonts/raleway/fonts.css'
 Vue.use(VueSweetalert2, options)
+
+Vue.filter('fromNow', function(value){
+  if(!value) return ''
+  return moment(value).fromNow()
+})
 
 Vue.use(vuesax)
 
